@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post detail</title>
+</head>
+<body>
+ {% block content %}
+     {% for post in posts %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a href="{% url 'others' pk=post.author.id %}">{{ post.author }}</a><br>
+                    <small>{{ post.created_at|date:"F d, Y" }}</small>
+                    <h2><a href="{% url 'post-detail' post.id %}"> {{ post.title }}</a></h2>
+
+                </div>
+            </div>
+        </article>
+     {% endfor %}
+{% endblock %}
+</body>
+</html>
